@@ -1,0 +1,97 @@
+import { Component, input, signal, effect } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-input',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: `
+    <div class="w-full">
+      @if (label()) {
+        <label 
+          [for]="id()"
+          class="block text-sm font-medium text-gray-700 mb-1"
+        >
+          {{ label() }}
+          @if (required()) {
+            <span class="text-red-500">*</span>
+          }
+        </label>
+      }
+      
+      <div class="relative">
+        <input
+          [id]="id()"
+          [type]="type()"
+          [placeholder]="placeholder()"
+          [disabled]="disabled()"
+          [required]="required()"
+          [value]="value()"
+          (input)="onInput($event)"
+          (blur)="onBlur()"
+          [class]="getInputClasses()"
+        />
+        
+        @if (error()) {
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        }
+      </div>
+
+      @if (error() && touched()) {
+        <p class="mt-1 text-sm text-red-600">{{ error() }}</p>
+      }
+
+      @if (hint() && !error()) {
+        <p class="mt-1 text-sm text-gray-500">{{ hint() }}</p>
+      }
+    </div>
+  `,
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
+})
+export class InputComponent {
+  // Inputs
+  id = input<string>(`input-${Math.random().toString(36).substr(2, 9)}`);
+  type = input<string>('text');
+  label = input<string>('');
+  placeholder = input<string>('');
+  hint = input<string>('');
+  error = input<string>('');
+  disabled = input<boolean>(false);
+  required = input<boolean>(false);
+  value = input<string>('');
+
+  // Internal state
+  readonly touched = signal<boolean>(false);
+
+  onInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    // Aquí podrías emitir el valor si usas two-way binding
+  }
+
+  onBlur(): void {
+    this.touched.set(true);
+  }
+
+  getInputClasses(): string {
+    const baseClasses = 'block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 sm:text-sm transition-colors';
+    
+    if (this.error() && this.touched()) {
+      return `${baseClasses} border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500`;
+    }
+    
+    if (this.disabled()) {
+      return `${baseClasses} border-gray-300 bg-gray-50 text-gray-500 cursor-not-allowed`;
+    }
+    
+    return `${baseClasses} border-gray-300 focus:ring-blue-500 focus:border-blue-500`;
+  }
+}
