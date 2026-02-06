@@ -1,6 +1,6 @@
 <app-modal
-  [isOpen]="isOpen"
-  [title]="editMode ? 'Editar Configuración' : 'Nueva Configuración'"
+  [isOpen]="isOpen()"
+  [title]="editMode() ? 'Editar Configuración' : 'Nueva Configuración'"
   [size]="'md'"
   (close)="onCancel()"
 >
@@ -51,9 +51,9 @@
         <app-button
           type="submit"
           [variant]="'primary'"
-          [disabled]="form.invalid || saving"
+          [disabled]="form.invalid || saving()"
         >
-          {{ saving ? 'Guardando...' : (editMode ? 'Actualizar' : 'Crear') }}
+          {{ saving() ? 'Guardando...' : (editMode() ? 'Actualizar' : 'Crear') }}
         </app-button>
       </div>
     </div>

@@ -26,13 +26,14 @@ export class ApiService {
   /**
    * GET request genérico
    */
-  get<T>(endpoint: string, params?: Record<string, any>): Observable<T> {
+  get<T>(endpoint: string, params?: Record<string, string | number | boolean>): Observable<T> {
     let httpParams = new HttpParams();
     
     if (params) {
       Object.keys(params).forEach(key => {
-        if (params[key] !== null && params[key] !== undefined) {
-          httpParams = httpParams.set(key, params[key].toString());
+        const value = params[key];
+        if (value !== null && value !== undefined) {
+          httpParams = httpParams.set(key, value.toString());
         }
       });
     }
@@ -43,21 +44,21 @@ export class ApiService {
   /**
    * POST request genérico
    */
-  post<T>(endpoint: string, body: any): Observable<T> {
+  post<T, B = unknown>(endpoint: string, body: B): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}${endpoint}`, body);
   }
 
   /**
    * PUT request genérico
    */
-  put<T>(endpoint: string, body: any): Observable<T> {
+  put<T, B = unknown>(endpoint: string, body: B): Observable<T> {
     return this.http.put<T>(`${this.baseUrl}${endpoint}`, body);
   }
 
   /**
    * PATCH request genérico
    */
-  patch<T>(endpoint: string, body: any): Observable<T> {
+  patch<T, B = Partial<T>>(endpoint: string, body: B): Observable<T> {
     return this.http.patch<T>(`${this.baseUrl}${endpoint}`, body);
   }
 

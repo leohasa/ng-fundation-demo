@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet, Router } from '@angular/router';
 import { ButtonComponent } from '../components/button.component';
@@ -12,15 +12,16 @@ import { ButtonComponent } from '../components/button.component';
 export class MainLayoutComponent {
   private readonly router = inject(Router);
   
-  mobileMenuOpen = false;
+  // Signal state
+  mobileMenuOpen = signal<boolean>(false);
   currentYear = new Date().getFullYear();
 
   toggleMobileMenu(): void {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
+    this.mobileMenuOpen.update(value => !value);
   }
 
   closeMobileMenu(): void {
-    this.mobileMenuOpen = false;
+    this.mobileMenuOpen.set(false);
   }
 
   goToAdmin(): void {

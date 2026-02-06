@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, inject } from '@angular/core';
+import { Component, input, output, OnInit, inject, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Setting, CreateSettingDto, UpdateSettingDto } from '../../../core/models/setting.model';
@@ -21,35 +21,43 @@ import { ButtonComponent } from '../../../shared/components/button.component';
 export class SettingFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
 
-  @Input() isOpen = false;
-  @Input() setting: Setting | null = null;
-  @Input() saving = false;
-  @Output() save = new EventEmitter<CreateSettingDto | UpdateSettingDto>();
-  @Output() cancel = new EventEmitter<void>();
+  // Signal inputs
+  isOpen = input<boolean>(false);
+  setting = input<Setting | null>(null);
+  saving = input<boolean>(false);
+  
+  // Signal outputs
+  save = output<CreateSettingDto | UpdateSettingDto>();
+  cancel = output<void>();
 
+  // Local signal state
+  editMode = signal<boolean>(false);
   form!: FormGroup;
-  editMode = false;
+
+  constructor() {
+    // React to setting changes
+    effect(() => {
+      const currentSetting = this.setting();
+      if (this.form) {
+        this.editMode.set(!!currentSetting);
+        if (currentSetting) {
+          this.form.patchValue({
+            key: currentSetting.key,
+            value: currentSetting.value,
+            description: currentSetting.description || ''
+          });
+          // Disable key field when editing
+          this.form.get('key')?.disable();
+        } else {
+          this.form.reset();
+          this.form.get('key')?.enable();
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.initForm();
-  }
-
-  ngOnChanges(): void {
-    if (this.form) {
-      this.editMode = !!this.setting;
-      if (this.setting) {
-        this.form.patchValue({
-          key: this.setting.key,
-          value: this.setting.value,
-          description: this.setting.description || ''
-        });
-        // Disable key field when editing
-        this.form.get('key')?.disable();
-      } else {
-        this.form.reset();
-        this.form.get('key')?.enable();
-      }
-    }
   }
 
   private initForm(): void {
@@ -59,12 +67,13 @@ export class SettingFormComponent implements OnInit {
       description: ['']
     });
 
-    if (this.setting) {
-      this.editMode = true;
+    const currentSetting = this.setting();
+    if (currentSetting) {
+      this.editMode.set(true);
       this.form.patchValue({
-        key: this.setting.key,
-        value: this.setting.value,
-        description: this.setting.description || ''
+        key: currentSetting.key,
+        value: currentSetting.value,
+        description: currentSetting.description || ''
       });
       this.form.get('key')?.disable();
     }
@@ -73,10 +82,11 @@ export class SettingFormComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const formValue = this.form.getRawValue();
+      const currentSetting = this.setting();
       
-      if (this.editMode && this.setting) {
+      if (this.editMode() && currentSetting) {
         const dto: UpdateSettingDto = {
-          id: this.setting.id,
+          id: currentSetting.id,
           value: formValue.value,
           description: formValue.description || undefined
         };

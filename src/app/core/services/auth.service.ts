@@ -1,4 +1,8 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { StorageService } from './storage.service';
+import { ErrorHandlerService } from './error-handler.service';
+import { AUTH_STORAGE_KEYS } from '../constants/storage.constants';
+import { AuthenticationError, ValidationError } from '../models/error.model';
 
 export interface User {
   id: string;
@@ -16,6 +20,9 @@ export interface LoginCredentials {
   providedIn: 'root'
 })
 export class AuthService {
+  private readonly storage = inject(StorageService);
+  private readonly errorHandler = inject(ErrorHandlerService);
+
   // Signals para manejo de estado
   private readonly _user = signal<User | null>(null);
   private readonly _token = signal<string | null>(null);
@@ -31,23 +38,25 @@ export class AuthService {
   );
 
   constructor() {
-    // Recuperar token del localStorage al iniciar
+    // Recuperar token del storage al iniciar
     this.loadFromStorage();
   }
 
   private loadFromStorage(): void {
-    const token = localStorage.getItem('auth_token');
-    const userJson = localStorage.getItem('auth_user');
-    
-    if (token && userJson) {
-      try {
-        const user = JSON.parse(userJson);
+    try {
+      const token = this.storage.get<string>(AUTH_STORAGE_KEYS.TOKEN);
+      const user = this.storage.get<User>(AUTH_STORAGE_KEYS.USER);
+      
+      if (token && user) {
         this._token.set(token);
         this._user.set(user);
-      } catch (error) {
-        console.error('Error parsing stored user data:', error);
-        this.clearStorage();
       }
+    } catch (error) {
+      const appError = this.errorHandler.handle(
+        error,
+        { component: 'AuthService', action: 'loadFromStorage' }
+      );
+      this.clearStorage();
     }
   }
 
@@ -55,7 +64,12 @@ export class AuthService {
     this._loading.set(true);
     
     try {
-      // Validación mock específica
+      // Validar credenciales
+      if (!credentials.email || !credentials.password) {
+        throw new ValidationError('Email y contraseña son requeridos');
+      }
+
+      // Simular llamada a API
       await this.simulateApiCall();
       
       // Validar credenciales mock
@@ -71,16 +85,19 @@ export class AuthService {
         this._user.set(mockUser);
         this._token.set(mockToken);
         
-        // Persistir en localStorage con flag de admin
-        localStorage.setItem('auth_token', mockToken);
-        localStorage.setItem('auth_user', JSON.stringify(mockUser));
-        localStorage.setItem('isAdmin', 'true');
+        // Persistir en storage
+        this.storage.set(AUTH_STORAGE_KEYS.TOKEN, mockToken);
+        this.storage.set(AUTH_STORAGE_KEYS.USER, mockUser);
+        this.storage.set(AUTH_STORAGE_KEYS.IS_ADMIN, 'true');
       } else {
-        throw new Error('Credenciales inválidas');
+        throw new AuthenticationError('Credenciales inválidas');
       }
     } catch (error) {
-      console.error('Login error:', error);
-      throw error;
+      const appError = this.errorHandler.handle(
+        error,
+        { component: 'AuthService', action: 'login', metadata: { email: credentials.email } }
+      );
+      throw appError;
     } finally {
       this._loading.set(false);
     }
@@ -93,9 +110,9 @@ export class AuthService {
   }
 
   private clearStorage(): void {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('auth_user');
-    localStorage.removeItem('isAdmin');
+    this.storage.remove(AUTH_STORAGE_KEYS.TOKEN);
+    this.storage.remove(AUTH_STORAGE_KEYS.USER);
+    this.storage.remove(AUTH_STORAGE_KEYS.IS_ADMIN);
   }
 
   private simulateApiCall(): Promise<void> {

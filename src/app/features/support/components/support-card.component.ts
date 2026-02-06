@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SupportInfo } from '../../../core/models/support-info.model';
 import { CardComponent } from '../../../shared/components/card.component';
@@ -17,20 +17,20 @@ import { ButtonComponent } from '../../../shared/components/button.component';
             <div class="flex items-center gap-2 mb-2">
               <span 
                 [class]="
-                  supportInfo.type === 'bank_account' 
+                  supportInfo().type === 'bank_account' 
                     ? 'px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800'
                     : 'px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800'
                 "
               >
-                {{ supportInfo.type === 'bank_account' ? 'Cuenta Bancaria' : 'Otra Forma' }}
+                {{ supportInfo().type === 'bank_account' ? 'Cuenta Bancaria' : 'Otra Forma' }}
               </span>
             </div>
             <h3 class="text-lg font-semibold text-gray-900">
-              {{ supportInfo.title }}
+              {{ supportInfo().title }}
             </h3>
           </div>
           
-          @if (showActions) {
+          @if (showActions()) {
             <div class="flex gap-2 ml-4">
               <app-button
                 [variant]="'ghost'"
@@ -52,11 +52,11 @@ import { ButtonComponent } from '../../../shared/components/button.component';
 
         <!-- Description -->
         <div class="prose prose-sm max-w-none">
-          <p class="text-gray-600 whitespace-pre-wrap">{{ supportInfo.description }}</p>
+          <p class="text-gray-600 whitespace-pre-wrap">{{ supportInfo().description }}</p>
         </div>
 
         <!-- Copy button for easy sharing -->
-        @if (!showActions) {
+        @if (!showActions()) {
           <div class="pt-2 border-t border-gray-200">
             <app-button
               [variant]="'secondary'"
@@ -64,7 +64,7 @@ import { ButtonComponent } from '../../../shared/components/button.component';
               (click)="copyToClipboard()"
               class="w-full"
             >
-              {{ copied ? '¡Copiado!' : 'Copiar Información' }}
+              {{ copied() ? '¡Copiado!' : 'Copiar Información' }}
             </app-button>
           </div>
         }
@@ -73,27 +73,41 @@ import { ButtonComponent } from '../../../shared/components/button.component';
   `
 })
 export class SupportCardComponent {
-  @Input({ required: true }) supportInfo!: SupportInfo;
-  @Input() showActions = false;
-  @Output() edit = new EventEmitter<SupportInfo>();
-  @Output() delete = new EventEmitter<string>();
+  // Signal inputs
+  supportInfo = input.required<SupportInfo>();
+  showActions = input<boolean>(false);
+  
+  // Signal outputs
+  edit = output<SupportInfo>();
+  delete = output<string>();
 
-  copied = false;
+  // Local signal state
+  copied = signal<boolean>(false);
+
+  constructor() {
+    // Reset copied state when supportInfo changes
+    effect(() => {
+      // Read the signal to track it
+      this.supportInfo();
+      // Reset copied state
+      this.copied.set(false);
+    }, { allowSignalWrites: true });
+  }
 
   onEdit(): void {
-    this.edit.emit(this.supportInfo);
+    this.edit.emit(this.supportInfo());
   }
 
   onDelete(): void {
-    this.delete.emit(this.supportInfo.id);
+    this.delete.emit(this.supportInfo().id);
   }
 
   copyToClipboard(): void {
-    const text = `${this.supportInfo.title}\n\n${this.supportInfo.description}`;
+    const text = `${this.supportInfo().title}\n\n${this.supportInfo().description}`;
     navigator.clipboard.writeText(text).then(() => {
-      this.copied = true;
+      this.copied.set(true);
       setTimeout(() => {
-        this.copied = false;
+        this.copied.set(false);
       }, 2000);
     });
   }
