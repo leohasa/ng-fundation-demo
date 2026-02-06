@@ -7,27 +7,24 @@
         Panel de administración de proyectos
       </p>
     </div>
-    <div class="flex gap-3">
-      <app-button
-        variant="secondary"
-        (clicked)="logout()"
-      >
-        Cerrar Sesión
-      </app-button>
-      <app-button
-        (clicked)="openCreateModal()"
-      >
-        + Nuevo Proyecto
-      </app-button>
-    </div>
+    <app-button
+      (clicked)="openCreateModal()"
+    >
+      + Nuevo Proyecto
+    </app-button>
   </div>
 
   <!-- User Info -->
   @if (authService.user(); as user) {
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-      <p class="text-sm text-blue-800">
-        Conectado como: <strong>{{ user.email }}</strong>
-      </p>
+      <div class="flex items-center justify-between">
+        <p class="text-sm text-blue-800">
+          Bienvenido, <strong>{{ user.name }}</strong>
+        </p>
+        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+          {{ user.roles.join(', ') }}
+        </span>
+      </div>
     </div>
   }
 

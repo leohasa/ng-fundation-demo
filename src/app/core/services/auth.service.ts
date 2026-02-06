@@ -55,24 +55,29 @@ export class AuthService {
     this._loading.set(true);
     
     try {
-      // Aquí iría la llamada real a tu API
-      // Simulamos una respuesta
+      // Validación mock específica
       await this.simulateApiCall();
       
-      const mockUser: User = {
-        id: '1',
-        email: credentials.email,
-        name: 'Usuario Demo',
-        roles: ['user']
-      };
-      const mockToken = 'mock-jwt-token-' + Date.now();
-      
-      this._user.set(mockUser);
-      this._token.set(mockToken);
-      
-      // Persistir en localStorage
-      localStorage.setItem('auth_token', mockToken);
-      localStorage.setItem('auth_user', JSON.stringify(mockUser));
+      // Validar credenciales mock
+      if (credentials.email === 'admin@fundacion.org' && credentials.password === 'admin123') {
+        const mockUser: User = {
+          id: '1',
+          email: credentials.email,
+          name: 'Administrador',
+          roles: ['admin']
+        };
+        const mockToken = 'mock-jwt-token-' + Date.now();
+        
+        this._user.set(mockUser);
+        this._token.set(mockToken);
+        
+        // Persistir en localStorage con flag de admin
+        localStorage.setItem('auth_token', mockToken);
+        localStorage.setItem('auth_user', JSON.stringify(mockUser));
+        localStorage.setItem('isAdmin', 'true');
+      } else {
+        throw new Error('Credenciales inválidas');
+      }
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -90,6 +95,7 @@ export class AuthService {
   private clearStorage(): void {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('auth_user');
+    localStorage.removeItem('isAdmin');
   }
 
   private simulateApiCall(): Promise<void> {

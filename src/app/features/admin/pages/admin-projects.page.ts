@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { ProjectsStore } from '../../projects/services/projects.store';
 import { ProjectCardComponent } from '../../projects/components/project-card.component';
 import { ProjectFormComponent } from '../../projects/components/project-form.component';
@@ -22,7 +21,6 @@ import { Project, CreateProjectDto, UpdateProjectDto } from '../../../core/model
 export class AdminProjectsPage implements OnInit {
   readonly store = inject(ProjectsStore);
   readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
 
   readonly isFormOpen = signal(false);
   readonly selectedProject = signal<Project | null>(null);
@@ -88,10 +86,5 @@ export class AdminProjectsPage implements OnInit {
     } finally {
       this.isDeleting.set(false);
     }
-  }
-
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

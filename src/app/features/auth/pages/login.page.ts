@@ -80,7 +80,7 @@ import { CardComponent } from '../../../shared/components/card.component';
         </app-card>
 
         <p class="mt-4 text-center text-sm text-gray-600">
-          Demo: Usa cualquier email/contraseña para ingresar
+          Demo: admin@fundacion.org / admin123
         </p>
       </div>
     </div>
@@ -108,7 +108,7 @@ export class LoginPage {
 
     try {
       await this.authService.login(this.loginForm.value);
-      this.router.navigate(['/']);
+      this.router.navigate(['/admin']);
     } catch (error: any) {
       this.errorMessage.set(error.message || 'Error al iniciar sesión');
     }
