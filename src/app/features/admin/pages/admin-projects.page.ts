@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectsStore } from '../../projects/services/projects.store';
-import { ProjectCardComponent } from '../../projects/components/project-card.component';
 import { ProjectFormComponent } from '../../projects/components/project-form.component';
 import { ButtonComponent } from '../../../shared/components/button.component';
 import { AuthService } from '../../../core/services/auth.service';
@@ -12,7 +11,6 @@ import { Project, CreateProjectDto, UpdateProjectDto } from '../../../core/model
   standalone: true,
   imports: [
     CommonModule,
-    ProjectCardComponent,
     ProjectFormComponent,
     ButtonComponent
   ],
