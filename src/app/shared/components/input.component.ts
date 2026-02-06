@@ -1,11 +1,18 @@
-import { Component, input, signal, effect } from '@angular/core';
+import { Component, input, signal, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true
+    }
+  ],
   template: `
     <div class="w-full">
       @if (label()) {
@@ -25,9 +32,9 @@ import { FormsModule } from '@angular/forms';
           [id]="id()"
           [type]="type()"
           [placeholder]="placeholder()"
-          [disabled]="disabled()"
+          [disabled]="isDisabled"
           [required]="required()"
-          [value]="value()"
+          [value]="internalValue()"
           (input)="onInput($event)"
           (blur)="onBlur()"
           [class]="getInputClasses()"
@@ -57,7 +64,7 @@ import { FormsModule } from '@angular/forms';
     }
   `]
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor {
   // Inputs
   id = input<string>(`input-${Math.random().toString(36).substr(2, 9)}`);
   type = input<string>('text');
@@ -71,14 +78,40 @@ export class InputComponent {
 
   // Internal state
   readonly touched = signal<boolean>(false);
+  readonly internalValue = signal<string>('');
+  isDisabled = false;
+
+  // ControlValueAccessor callbacks
+  private onChange: (value: string) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  // ControlValueAccessor implementation
+  writeValue(value: string): void {
+    this.internalValue.set(value || '');
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
 
   onInput(event: Event): void {
     const target = event.target as HTMLInputElement;
-    // Aquí podrías emitir el valor si usas two-way binding
+    const value = target.value;
+    this.internalValue.set(value);
+    this.onChange(value);
   }
 
   onBlur(): void {
     this.touched.set(true);
+    this.onTouched();
   }
 
   getInputClasses(): string {
@@ -88,7 +121,7 @@ export class InputComponent {
       return `${baseClasses} border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500`;
     }
     
-    if (this.disabled()) {
+    if (this.isDisabled || this.disabled()) {
       return `${baseClasses} border-gray-300 bg-gray-50 text-gray-500 cursor-not-allowed`;
     }
     

@@ -22,7 +22,7 @@ export class ModalComponent {
   showFooter = input<boolean>(true);
 
   // Outputs
-  closed = output<void>();
+  close = output<void>();
 
   constructor() {
     // Effect para manejar el scroll del body
@@ -35,13 +35,13 @@ export class ModalComponent {
     });
   }
 
-  close(): void {
-    this.closed.emit();
+  handleClose(): void {
+    this.close.emit();
   }
 
   handleBackdropClick(event: MouseEvent): void {
     if (this.closeOnBackdrop() && event.target === event.currentTarget) {
-      this.close();
+      this.handleClose();
     }
   }
 }
