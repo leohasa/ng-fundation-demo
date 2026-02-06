@@ -43,7 +43,7 @@ import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
                 class="text-blue-600 hover:text-blue-800 font-medium"
                 [routerLink]="['/projects', project().id]"
               >
-                Ver más
+                Leer más
               </button>
               
               @if (showActions()) {
