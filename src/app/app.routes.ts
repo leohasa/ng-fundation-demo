@@ -20,6 +20,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/pages/login.page').then(m => m.LoginPage)
   },
   {
+    path: 'support',
+    loadChildren: () => import('./features/support/support.routes').then(m => m.SUPPORT_ROUTES)
+  },
+  {
     path: 'admin',
     canActivate: [authGuard],
     loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)

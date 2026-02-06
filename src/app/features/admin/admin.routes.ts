@@ -11,5 +11,10 @@ export const ADMIN_ROUTES: Routes = [
     path: 'projects',
     canActivate: [adminGuard],
     loadComponent: () => import('./pages/admin-projects.page').then(m => m.AdminProjectsPage)
+  },
+  {
+    path: 'settings',
+    canActivate: [adminGuard],
+    loadChildren: () => import('../settings/settings.routes').then(m => m.SETTINGS_ROUTES)
   }
 ];

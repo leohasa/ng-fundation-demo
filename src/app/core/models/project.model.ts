@@ -6,6 +6,8 @@ export interface Project {
   imageUrl: string;
   publishDate: Date;
   isActive: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface CreateProjectDto {
