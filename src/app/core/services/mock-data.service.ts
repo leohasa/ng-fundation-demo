@@ -292,28 +292,69 @@ export class MockDataService {
       id: '1',
       type: 'bank_account',
       title: 'Banco Industrial',
-      description: 'Cuenta: 123-456789-0\nA nombre de: Fundación XYZ\nTipo: Monetaria',
+      description: 'Cuenta monetaria en quetzales para donaciones nacionales',
+      bankName: 'Banco Industrial',
+      accountNumber: '1234-5678-9012',
+      accountHolder: 'Fundación Esperanza',
+      accountType: 'Monetaria',
       isActive: true
     },
     {
       id: '2',
       type: 'bank_account',
       title: 'Banrural',
-      description: 'Cuenta: 987-654321-0\nA nombre de: Fundación XYZ\nTipo: Ahorro',
+      description: 'Cuenta de ahorro para donaciones y proyectos especiales',
+      bankName: 'Banrural',
+      accountNumber: '9876-5432-1098',
+      accountHolder: 'Fundación Esperanza',
+      accountType: 'Ahorro',
       isActive: true
     },
     {
       id: '3',
-      type: 'other',
-      title: 'Voluntariado',
-      description: 'Únete como voluntario en nuestros proyectos y marca la diferencia en tu comunidad',
+      type: 'bank_account',
+      title: 'BAC Credomatic',
+      description: 'Cuenta en dólares para donaciones internacionales',
+      bankName: 'BAC Credomatic',
+      accountNumber: '5555-4444-3333',
+      accountHolder: 'Fundación Esperanza',
+      accountType: 'Ahorro USD',
       isActive: true
     },
     {
       id: '4',
       type: 'other',
-      title: 'Donación en especie',
-      description: 'Recibimos alimentos, ropa, útiles escolares y materiales de construcción',
+      title: 'Voluntariado',
+      description: 'Únete como voluntario en nuestros proyectos y marca la diferencia en tu comunidad. Ofrecemos oportunidades en educación, salud, medio ambiente y desarrollo comunitario.',
+      icon: 'volunteer',
+      contactInfo: 'voluntariado@fundacion.org | Tel: 2222-3333',
+      isActive: true
+    },
+    {
+      id: '5',
+      type: 'other',
+      title: 'Donación en Especie',
+      description: 'Recibimos alimentos no perecederos, ropa en buen estado, útiles escolares, materiales de construcción y equipo médico. Todas las donaciones son documentadas y entregadas directamente a las comunidades.',
+      icon: 'donation',
+      contactInfo: 'donaciones@fundacion.org | Bodega: Zona 12, Ciudad',
+      isActive: true
+    },
+    {
+      id: '6',
+      type: 'other',
+      title: 'Apadrinamiento',
+      description: 'Apadrina a un niño o niña y apoya su educación, salud y desarrollo integral. Tu aporte mensual hace una diferencia real en su futuro.',
+      icon: 'heart',
+      contactInfo: 'apadrinamiento@fundacion.org | Tel: 2222-4444',
+      isActive: true
+    },
+    {
+      id: '7',
+      type: 'other',
+      title: 'Donación de Tiempo Profesional',
+      description: 'Si eres profesional en áreas como medicina, educación, tecnología, legal o administración, tu tiempo y conocimiento son invaluables para nuestros proyectos.',
+      icon: 'professional',
+      contactInfo: 'profesionales@fundacion.org',
       isActive: true
     }
   ];

@@ -1,20 +1,27 @@
-<div class="min-h-screen bg-gray-50 py-8">
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">
-        Cómo Apoyarnos
+    <!-- Hero Section / Texto Introductorio -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        ¡Gracias por Tu Interés en Apoyarnos!
       </h1>
-      <p class="text-lg text-gray-600">
-        Tu apoyo nos ayuda a continuar con nuestra misión. Elige la forma que más te convenga.
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
+        Tu apoyo es fundamental para continuar transformando vidas y construyendo un futuro mejor. 
+        Cada contribución, sin importar su forma, hace una diferencia real en las comunidades que servimos.
       </p>
+      <div class="flex items-center justify-center gap-2 text-blue-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+        <span class="font-semibold">Juntos podemos lograr más</span>
+      </div>
     </div>
 
     <!-- Loading State -->
     @if (store.loading()) {
       <div class="text-center py-12">
         <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        <p class="mt-4 text-gray-600">Cargando información...</p>
+        <p class="mt-4 text-gray-600">Cargando opciones de apoyo...</p>
       </div>
     }
 
@@ -27,35 +34,71 @@
 
     <!-- Content -->
     @if (!store.loading() && !store.error()) {
-      <!-- Bank Support Section -->
+      <!-- Sección de Cuentas Bancarias -->
       @if (store.hasBankSupport()) {
-        <section class="mb-12">
-          <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-            Cuentas Bancarias
-          </h2>
-          <p class="text-gray-600 mb-6">
-            Puedes realizar transferencias directas a nuestras cuentas bancarias.
-          </p>
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section class="mb-16">
+          <!-- Header de la sección -->
+          <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-3">
+              Donaciones Bancarias
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Realiza transferencias directas a nuestras cuentas bancarias. Todas las donaciones son deducibles de impuestos 
+              y recibirás un recibo oficial. Haz clic en cualquier tarjeta para copiar el número de cuenta.
+            </p>
+          </div>
+          
+          <!-- Grid de tarjetas bancarias -->
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             @for (info of store.bankSupport(); track info.id) {
-              <app-support-card [supportInfo]="info" />
+              <app-bank-card [bankInfo]="info" />
             }
+          </div>
+          
+          <!-- Nota informativa -->
+          <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-sm text-blue-800">
+                <strong>Importante:</strong> Por favor envía tu comprobante de transferencia a 
+                <a href="mailto:donaciones@fundacion.org" class="underline font-semibold">donaciones@fundacion.org</a> 
+                para emitir tu recibo oficial.
+              </p>
+            </div>
           </div>
         </section>
       }
 
-      <!-- Other Support Section -->
+      <!-- Sección de Otras Formas de Apoyo -->
       @if (store.hasOtherSupport()) {
-        <section>
-          <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-            Otras Formas de Apoyo
-          </h2>
-          <p class="text-gray-600 mb-6">
-            También aceptamos donaciones a través de estas plataformas.
-          </p>
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section class="mb-16">
+          <!-- Header de la sección -->
+          <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-3">
+              Otras Formas de Contribuir
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              No solo el dinero hace la diferencia. Tu tiempo, conocimientos y recursos también son invaluables 
+              para nuestros proyectos. Explora estas opciones para involucrarte.
+            </p>
+          </div>
+          
+          <!-- Lista de otras opciones -->
+          <div class="grid gap-4 max-w-4xl mx-auto">
             @for (info of store.otherSupport(); track info.id) {
-              <app-support-card [supportInfo]="info" />
+              <app-other-support-card [supportOption]="info" />
             }
           </div>
         </section>
@@ -87,15 +130,35 @@
       }
     }
 
-    <!-- Contact Section -->
-    <div class="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-blue-900 mb-2">
-        ¿Necesitas ayuda?
+    <!-- Sección de Contacto / CTA Final -->
+    <div class="mt-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white text-center shadow-xl">
+      <h3 class="text-2xl font-bold mb-3">
+        ¿Tienes Preguntas o Quieres Más Información?
       </h3>
-      <p class="text-blue-800">
-        Si tienes preguntas sobre cómo apoyarnos o necesitas información adicional, 
-        no dudes en contactarnos. Estamos aquí para ayudarte.
+      <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+        Nuestro equipo está listo para ayudarte. Ya sea que quieras hacer una donación, ser voluntario 
+        o conocer más sobre nuestro trabajo, estamos aquí para ti.
       </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="mailto:contacto@fundacion.org" 
+          class="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Envíanos un Correo
+        </a>
+        <a 
+          href="tel:+50222223333" 
+          class="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Llámanos: 2222-3333
+        </a>
+      </div>
     </div>
   </div>
 </div>

@@ -6,6 +6,14 @@ export interface SupportInfo {
   title: string;
   description: string;
   isActive: boolean;
+  // Campos específicos para cuentas bancarias
+  bankName?: string;
+  accountNumber?: string;
+  accountHolder?: string;
+  accountType?: string;
+  // Campos para otras formas de apoyo
+  icon?: string;
+  contactInfo?: string;
 }
 
 export interface CreateSupportInfoDto {
@@ -13,6 +21,12 @@ export interface CreateSupportInfoDto {
   title: string;
   description: string;
   isActive?: boolean;
+  bankName?: string;
+  accountNumber?: string;
+  accountHolder?: string;
+  accountType?: string;
+  icon?: string;
+  contactInfo?: string;
 }
 
 export interface UpdateSupportInfoDto extends Partial<CreateSupportInfoDto> {
