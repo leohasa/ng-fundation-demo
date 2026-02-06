@@ -4,7 +4,7 @@
     @if (store.loading()) {
       <div class="flex justify-center items-center py-12">
         <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        <p class="mt-4 text-gray-600">Cargando proyecto...</p>
+        <p class="mt-4 text-gray-600">{{ 'projects.loadingProject' | translate }}</p>
       </div>
     }
 
@@ -23,7 +23,7 @@
           variant="ghost"
           (clicked)="goBack()"
         >
-          ← Volver
+          ← {{ 'projects.detail.back' | translate }}
         </app-button>
       </div>
 
@@ -45,11 +45,11 @@
             </h1>
             @if (project.isActive) {
               <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                Activo
+                {{ 'projects.status.active' | translate }}
               </span>
             } @else {
               <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                Inactivo
+                {{ 'projects.status.inactive' | translate }}
               </span>
             }
           </div>
@@ -59,7 +59,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            <span>Publicado {{ project.publishDate | timeAgo }}</span>
+            <span>{{ project.publishDate | timeAgo }}</span>
             <span>•</span>
             <span>{{ project.publishDate | date:'longDate' }}</span>
           </div>
@@ -82,7 +82,7 @@
               variant="secondary"
               (clicked)="goBack()"
             >
-              ← Volver a proyectos
+              ← {{ 'projects.detail.backToProjectsList' | translate }}
             </app-button>
           </div>
         </div>

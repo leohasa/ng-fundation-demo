@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { ProjectsStore } from '../services/projects.store';
 import { ButtonComponent } from '../../../shared/components/button.component';
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, TimeAgoPipe],
+  imports: [CommonModule, ButtonComponent, TimeAgoPipe, TranslatePipe],
   templateUrl: './project-detail.page.html',
   styles: [`
     .prose {

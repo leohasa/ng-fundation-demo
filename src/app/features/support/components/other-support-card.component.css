@@ -1,0 +1,146 @@
+.support-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.support-option:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.icon-wrapper {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.support-option:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+
+.icon-wrapper.color-volunteer {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.icon-wrapper.color-donation {
+  background-color: #fce7f3;
+  color: #db2777;
+}
+
+.icon-wrapper.color-heart {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.icon-wrapper.color-professional {
+  background-color: #e0e7ff;
+  color: #6366f1;
+}
+
+.icon-wrapper.color-default {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.contact-icon {
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.contact-text {
+  font-size: 0.75rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.arrow {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: #9ca3af;
+  transition: all 0.3s;
+}
+
+.support-option:hover .arrow {
+  color: #3b82f6;
+  transform: translateX(4px);
+}
+
+.arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .support-option {
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .title {
+    font-size: 1.125rem;
+  }
+  
+  .arrow {
+    display: none;
+  }
+}

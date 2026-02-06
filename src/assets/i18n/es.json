@@ -1,0 +1,173 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "support": "Cómo Apoyar",
+    "admin": "Admin",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión"
+  },
+  "home": {
+    "hero": {
+      "title": "Transformando Vidas, Construyendo Futuro",
+      "subtitle": "Únete a nosotros en nuestra misión de crear comunidades más fuertes y sostenibles a través de la educación, salud y desarrollo comunitario",
+      "cta": "Conoce Nuestros Proyectos",
+      "ctaContact": "Contáctanos",
+      "ctaSupport": "Apóyanos"
+    },
+    "aboutUs": {
+      "title": "Sobre Nosotros",
+      "subtitle": "Conoce nuestra misión, visión y los valores que nos guían en nuestro trabajo diario",
+      "mission": "Misión",
+      "vision": "Visión",
+      "values": "Valores"
+    },
+    "impact": {
+      "title": "Nuestro Impacto",
+      "subtitle": "Números que reflejan nuestro compromiso y dedicación con las comunidades",
+      "peopleHelped": "Personas Beneficiadas",
+      "projectsCompleted": "Proyectos Completados",
+      "communitiesSupported": "Comunidades Apoyadas",
+      "yearsExperience": "Años de Experiencia"
+    },
+    "howWeHelp": {
+      "title": "Cómo Ayudamos",
+      "subtitle": "Áreas clave en las que trabajamos para transformar vidas",
+      "education": {
+        "title": "Educación",
+        "description": "Programas educativos para niños y adultos"
+      },
+      "health": {
+        "title": "Salud",
+        "description": "Acceso a servicios médicos básicos"
+      },
+      "development": {
+        "title": "Desarrollo",
+        "description": "Proyectos de desarrollo comunitario sostenible"
+      }
+    },
+    "testimonials": {
+      "title": "Lo Que Dicen",
+      "subtitle": "Historias reales de personas cuyas vidas hemos transformado"
+    },
+    "cta": {
+      "title": "¿Listo para Hacer la Diferencia?",
+      "description": "Tu apoyo puede cambiar vidas. Descubre cómo puedes contribuir a nuestra causa",
+      "button": "Apóyanos Hoy"
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "subtitle": "¿Tienes preguntas o quieres saber más sobre nuestro trabajo? Nos encantaría escucharte",
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "message": "Mensaje",
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu@email.com",
+      "messagePlaceholder": "Cuéntanos cómo podemos ayudarte...",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "successMessage": "¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.",
+      "requiredField": "Este campo es requerido",
+      "invalidEmail": "Por favor ingresa un correo válido"
+    }
+  },
+  "projects": {
+    "title": "Nuestros Proyectos",
+    "subtitle": "Conoce las iniciativas que están transformando comunidades",
+    "viewDetails": "Ver Detalles",
+    "readMore": "Leer más",
+    "loading": "Cargando proyectos...",
+    "loadingProject": "Cargando proyecto...",
+    "noProjects": "No hay proyectos disponibles",
+    "noProjectsDescription": "Actualmente no tenemos proyectos activos. Vuelve pronto para ver nuestras iniciativas.",
+    "showingProjects": "Mostrando {{count}} proyecto(s) activo(s)",
+    "exploreDescription": "Explora todos nuestros proyectos activos y conoce cómo estamos transformando vidas",
+    "publishedOn": "Publicado {{timeAgo}}",
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "completed": "Completado",
+      "planned": "Planificado"
+    },
+    "detail": {
+      "description": "Descripción",
+      "goals": "Objetivos",
+      "location": "Ubicación",
+      "startDate": "Fecha de Inicio",
+      "endDate": "Fecha de Finalización",
+      "budget": "Presupuesto",
+      "beneficiaries": "Beneficiarios",
+      "backToProjects": "Volver a Proyectos",
+      "back": "Volver",
+      "backToProjectsList": "Volver a proyectos"
+    }
+  },
+  "support": {
+    "title": "Cómo Apoyar",
+    "subtitle": "Tu contribución hace la diferencia en la vida de muchas personas",
+    "thankYou": "¡Gracias por Tu Interés en Apoyarnos!",
+    "introDescription": "Tu apoyo es fundamental para continuar transformando vidas y construyendo un futuro mejor. Cada contribución, sin importar su forma, hace una diferencia real en las comunidades que servimos.",
+    "togetherMessage": "Juntos podemos lograr más",
+    "loadingOptions": "Cargando opciones de apoyo...",
+    "noSupportAvailable": "No hay información de apoyo disponible",
+    "noSupportDescription": "Actualmente no tenemos formas de apoyo configuradas.",
+    "bankAccounts": "Cuentas Bancarias",
+    "bankDonations": "Donaciones Bancarias",
+    "bankDonationsDescription": "Realiza transferencias directas a nuestras cuentas bancarias. Todas las donaciones son deducibles de impuestos y recibirás un recibo oficial. Haz clic en cualquier tarjeta para copiar el número de cuenta.",
+    "otherWays": "Otras Formas de Apoyo",
+    "otherWaysTitle": "Otras Formas de Contribuir",
+    "otherWaysDescription": "No solo el dinero hace la diferencia. Tu tiempo, conocimientos y recursos también son invaluables para nuestros proyectos. Explora estas opciones para involucrarte.",
+    "clickToCopy": "Clic para copiar número de cuenta",
+    "copied": "¡Copiado!",
+    "copyInfo": "Copiar Información",
+    "important": "Importante",
+    "receiptNote": "Por favor envía tu comprobante de transferencia a",
+    "receiptNoteSuffix": "para emitir tu recibo oficial.",
+    "questionsTitle": "¿Tienes Preguntas o Quieres Más Información?",
+    "questionsDescription": "Nuestro equipo está listo para ayudarte. Ya sea que quieras hacer una donación, ser voluntario o conocer más sobre nuestro trabajo, estamos aquí para ti.",
+    "sendEmail": "Envíanos un Correo",
+    "callUs": "Llámanos",
+    "accountHolder": "Titular",
+    "accountType": "Tipo"
+  },
+
+  "footer": {
+    "about": "Transformando vidas a través de programas de educación, salud y desarrollo comunitario sostenible.",
+    "quickLinks": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "location": "Ciudad de Guatemala, Guatemala",
+    "email": "info@fundacion.org",
+    "phone": "+502 1234-5678",
+    "copyright": "© {{year}} Fundación Esperanza. Todos los derechos reservados."
+  },
+  "errors": {
+    "notFound": "Página no encontrada",
+    "serverError": "Error del servidor",
+    "networkError": "Error de conexión",
+    "unauthorized": "No autorizado",
+    "forbidden": "Acceso denegado",
+    "validationError": "Error de validación",
+    "unknownError": "Error desconocido"
+  }
+}

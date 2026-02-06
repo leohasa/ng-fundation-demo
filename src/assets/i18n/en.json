@@ -1,0 +1,173 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "support": "How to Support",
+    "admin": "Admin",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero": {
+      "title": "Transforming Lives, Building Future",
+      "subtitle": "Join us in our mission to create stronger, sustainable communities through education, health, and community development",
+      "cta": "Discover Our Projects",
+      "ctaContact": "Contact Us",
+      "ctaSupport": "Support Us"
+    },
+    "aboutUs": {
+      "title": "About Us",
+      "subtitle": "Learn about our mission, vision, and the values that guide our daily work",
+      "mission": "Mission",
+      "vision": "Vision",
+      "values": "Values"
+    },
+    "impact": {
+      "title": "Our Impact",
+      "subtitle": "Numbers that reflect our commitment and dedication to communities",
+      "peopleHelped": "People Helped",
+      "projectsCompleted": "Projects Completed",
+      "communitiesSupported": "Communities Supported",
+      "yearsExperience": "Years of Experience"
+    },
+    "howWeHelp": {
+      "title": "How We Help",
+      "subtitle": "Key areas where we work to transform lives",
+      "education": {
+        "title": "Education",
+        "description": "Educational programs for children and adults"
+      },
+      "health": {
+        "title": "Health",
+        "description": "Access to basic medical services"
+      },
+      "development": {
+        "title": "Development",
+        "description": "Sustainable community development projects"
+      }
+    },
+    "testimonials": {
+      "title": "What They Say",
+      "subtitle": "Real stories from people whose lives we've transformed"
+    },
+    "cta": {
+      "title": "Ready to Make a Difference?",
+      "description": "Your support can change lives. Discover how you can contribute to our cause",
+      "button": "Support Us Today"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Have questions or want to know more about our work? We'd love to hear from you",
+      "name": "Full Name",
+      "email": "Email Address",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Tell us how we can help you...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "successMessage": "Thank you for contacting us! We'll get back to you soon.",
+      "requiredField": "This field is required",
+      "invalidEmail": "Please enter a valid email"
+    }
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "Learn about the initiatives transforming communities",
+    "viewDetails": "View Details",
+    "readMore": "Read more",
+    "loading": "Loading projects...",
+    "loadingProject": "Loading project...",
+    "noProjects": "No projects available",
+    "noProjectsDescription": "We currently have no active projects. Check back soon to see our initiatives.",
+    "showingProjects": "Showing {{count}} active project(s)",
+    "exploreDescription": "Explore all our active projects and learn how we are transforming lives",
+    "publishedOn": "Published {{timeAgo}}",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "completed": "Completed",
+      "planned": "Planned"
+    },
+    "detail": {
+      "description": "Description",
+      "goals": "Goals",
+      "location": "Location",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "budget": "Budget",
+      "beneficiaries": "Beneficiaries",
+      "backToProjects": "Back to Projects",
+      "back": "Back",
+      "backToProjectsList": "Back to projects"
+    }
+  },
+  "support": {
+    "title": "How to Support",
+    "subtitle": "Your contribution makes a difference in the lives of many people",
+    "thankYou": "Thank You for Your Interest in Supporting Us!",
+    "introDescription": "Your support is essential to continue transforming lives and building a better future. Every contribution, regardless of its form, makes a real difference in the communities we serve.",
+    "togetherMessage": "Together we can achieve more",
+    "loadingOptions": "Loading support options...",
+    "noSupportAvailable": "No support information available",
+    "noSupportDescription": "We currently have no configured support methods.",
+    "bankAccounts": "Bank Accounts",
+    "bankDonations": "Bank Donations",
+    "bankDonationsDescription": "Make direct transfers to our bank accounts. All donations are tax-deductible and you will receive an official receipt. Click on any card to copy the account number.",
+    "otherWays": "Other Ways to Support",
+    "otherWaysTitle": "Other Ways to Contribute",
+    "otherWaysDescription": "Money isn't the only way to make a difference. Your time, knowledge, and resources are also invaluable to our projects. Explore these options to get involved.",
+    "clickToCopy": "Click to copy account number",
+    "copied": "Copied!",
+    "copyInfo": "Copy Information",
+    "important": "Important",
+    "receiptNote": "Please send your transfer receipt to",
+    "receiptNoteSuffix": "to issue your official receipt.",
+    "questionsTitle": "Have Questions or Want More Information?",
+    "questionsDescription": "Our team is ready to help you. Whether you want to make a donation, volunteer, or learn more about our work, we're here for you.",
+    "sendEmail": "Send Us an Email",
+    "callUs": "Call Us",
+    "accountHolder": "Holder",
+    "accountType": "Type"
+  },
+
+  "footer": {
+    "about": "Transforming lives through education, health, and sustainable community development programs.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "location": "Guatemala City, Guatemala",
+    "email": "info@fundacion.org",
+    "phone": "+502 1234-5678",
+    "copyright": "© {{year}} Fundación Esperanza. All rights reserved."
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "serverError": "Server error",
+    "networkError": "Connection error",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Access denied",
+    "validationError": "Validation error",
+    "unknownError": "Unknown error"
+  }
+}

@@ -1,0 +1,212 @@
+.bank-card-container {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.bank-card-container:hover {
+  transform: translateY(-4px);
+}
+
+.bank-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.586;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.bank-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.copied-animation {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.card-background {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s;
+}
+
+.card-background.gradient-industrial {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-background.gradient-banrural {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.card-background.gradient-bac {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.card-background.gradient-default {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.chip {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  width: 50px;
+  height: 40px;
+  background: linear-gradient(135deg, #ffd89b 0%, #ffb347 100%);
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.card-content {
+  position: relative;
+  padding: 30px;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bank-logo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bank-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+
+.account-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Courier New', monospace;
+  margin: 20px 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.account-holder,
+.account-type {
+  flex: 1;
+}
+
+.label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.copy-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+.copy-icon,
+.check-icon {
+  width: 32px;
+  height: 32px;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s;
+}
+
+.copy-icon.hidden {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.check-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.check-icon.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card-description {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.copy-button {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px 16px;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.copy-button:hover {
+  background-color: #e5e7eb;
+}
+
+.copy-button.copied {
+  background-color: #dcfce7;
+  color: #16a34a;
+  border-color: #86efac;
+}
+
+@media (max-width: 768px) {
+  .card-content {
+    padding: 20px;
+  }
+  
+  .bank-name {
+    font-size: 1rem;
+  }
+  
+  .account-number {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+  
+  .value {
+    font-size: 0.75rem;
+  }
+  
+  .chip {
+    top: 35px;
+    left: 20px;
+    width: 40px;
+    height: 32px;
+  }
+}

@@ -1,0 +1,52 @@
+<div class="bank-card-container" (click)="copyAccountNumber()">
+  <div class="bank-card" [class.copied-animation]="copied()">
+    <!-- Gradiente de fondo según el banco -->
+    <div class="card-background" [ngClass]="getBankGradient()"></div>
+    
+    <!-- Chip simulado -->
+    <div class="chip"></div>
+    
+    <!-- Contenido de la tarjeta -->
+    <div class="card-content">
+      <!-- Logo del banco (nombre) -->
+      <div class="bank-logo">
+        <h3 class="bank-name">{{ bankInfo().bankName }}</h3>
+      </div>
+      
+      <!-- Número de cuenta -->
+      <div class="account-number">
+        {{ formatAccountNumber(bankInfo().accountNumber || '') }}
+      </div>
+      
+      <!-- Información inferior -->
+      <div class="card-footer">
+        <div class="account-holder">
+          <div class="label">{{ 'support.accountHolder' | translate }}</div>
+          <div class="value">{{ bankInfo().accountHolder }}</div>
+        </div>
+        <div class="account-type">
+          <div class="label">{{ 'support.accountType' | translate }}</div>
+          <div class="value">{{ bankInfo().accountType }}</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Icono de copiar -->
+    <div class="copy-indicator">
+      <svg class="copy-icon" [class.hidden]="copied()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+      </svg>
+      <svg class="check-icon" [class.show]="copied()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Descripción debajo de la tarjeta -->
+  <p class="card-description">{{ bankInfo().description }}</p>
+  
+  <!-- Botón de copiar -->
+  <button class="copy-button" [class.copied]="copied()">
+    {{ copied() ? ('support.copied' | translate) : ('support.clickToCopy' | translate) }}
+  </button>
+</div>

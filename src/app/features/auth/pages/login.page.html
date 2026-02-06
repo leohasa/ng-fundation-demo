@@ -1,0 +1,68 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-900">
+        {{ 'auth.login.title' | translate }}
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        {{ 'auth.login.subtitle' | translate }}
+      </p>
+    </div>
+
+    <app-card variant="elevated">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="space-y-6">
+          @if (errorMessage()) {
+            <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p class="text-sm text-red-800">{{ errorMessage() }}</p>
+            </div>
+          }
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ 'auth.login.email' | translate }}
+            </label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              [placeholder]="'auth.login.emailPlaceholder' | translate"
+              class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+              <p class="mt-1 text-sm text-red-600">{{ 'home.contact.invalidEmail' | translate }}</p>
+            }
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ 'auth.login.password' | translate }}
+            </label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              [placeholder]="'auth.login.passwordPlaceholder' | translate"
+              class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+              <p class="mt-1 text-sm text-red-600">{{ 'home.contact.requiredField' | translate }}</p>
+            }
+          </div>
+
+          <app-button
+            type="submit"
+            [fullWidth]="true"
+            [disabled]="loginForm.invalid || authService.loading()"
+          >
+            {{ authService.loading() ? ('auth.login.submitting' | translate) : ('auth.login.submit' | translate) }}
+          </app-button>
+        </div>
+      </form>
+    </app-card>
+
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Demo: admin@fundacion.org / admin123
+    </p>
+  </div>
+</div>

@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { Project } from '../../../core/models/project.model';
 import { CardComponent } from '../../../shared/components/card.component';
 import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, CardComponent, TimeAgoPipe],
+  imports: [CommonModule, RouterLink, CardComponent, TimeAgoPipe, TranslatePipe],
   template: `
     <app-card variant="elevated" [padding]="false">
       <div class="cursor-pointer hover:opacity-90 transition-opacity">
@@ -25,7 +26,7 @@ import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
             </h3>
             @if (project().isActive) {
               <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                Activo
+                {{ 'projects.status.active' | translate }}
               </span>
             }
           </div>
@@ -43,7 +44,7 @@ import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
                 class="text-blue-600 hover:text-blue-800 font-medium"
                 [routerLink]="['/projects', project().id]"
               >
-                Leer más
+                {{ 'projects.readMore' | translate }}
               </button>
               
               @if (showActions()) {
@@ -52,14 +53,14 @@ import { TimeAgoPipe } from '../../../shared/pipes/time-ago.pipe';
                   class="text-amber-600 hover:text-amber-800 font-medium"
                   (click)="edit.emit(project())"
                 >
-                  Editar
+                  {{ 'common.edit' | translate }}
                 </button>
                 <button
                   type="button"
                   class="text-red-600 hover:text-red-800 font-medium"
                   (click)="delete.emit(project())"
                 >
-                  Eliminar
+                  {{ 'common.delete' | translate }}
                 </button>
               }
             </div>

@@ -7,6 +7,7 @@ import { ButtonComponent } from '../../../shared/components/button.component';
 import { CardComponent } from '../../../shared/components/card.component';
 import { ErrorHandlerService } from '../../../core/services/error-handler.service';
 import { BaseAppError, isAppError } from '../../../core/models/error.model';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ import { BaseAppError, isAppError } from '../../../core/models/error.model';
     CommonModule, 
     ReactiveFormsModule, 
     ButtonComponent, 
-    CardComponent
+    CardComponent,
+    TranslatePipe
   ],
   templateUrl: './login.page.html'
 })

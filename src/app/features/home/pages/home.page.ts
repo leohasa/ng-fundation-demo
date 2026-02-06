@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { ButtonComponent } from '../../../shared/components/button.component';
 import { CardComponent } from '../../../shared/components/card.component';
 import { SettingsStore } from '../../settings/services/settings.store';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ import { SettingsStore } from '../../settings/services/settings.store';
     RouterLink, 
     ReactiveFormsModule,
     ButtonComponent, 
-    CardComponent
+    CardComponent,
+    TranslatePipe
   ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.css']

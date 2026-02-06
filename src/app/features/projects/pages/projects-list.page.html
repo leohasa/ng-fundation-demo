@@ -2,9 +2,9 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Nuestros Proyectos</h1>
+      <h1 class="text-3xl font-bold text-gray-900">{{ 'projects.title' | translate }}</h1>
       <p class="mt-2 text-lg text-gray-600">
-        Explora todos nuestros proyectos activos y conoce cómo estamos transformando vidas
+        {{ 'projects.exploreDescription' | translate }}
       </p>
     </div>
 
@@ -12,7 +12,7 @@
     @if (store.loading()) {
       <div class="flex justify-center items-center py-12">
         <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        <p class="mt-4 text-gray-600">Cargando proyectos...</p>
+        <p class="mt-4 text-gray-600">{{ 'projects.loading' | translate }}</p>
       </div>
     }
 
@@ -40,8 +40,8 @@
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
         </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No hay proyectos disponibles</h3>
-        <p class="mt-1 text-sm text-gray-500">Actualmente no tenemos proyectos activos. Vuelve pronto para ver nuestras iniciativas.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">{{ 'projects.noProjects' | translate }}</h3>
+        <p class="mt-1 text-sm text-gray-500">{{ 'projects.noProjectsDescription' | translate }}</p>
       </div>
     }
 
@@ -55,7 +55,7 @@
 
       <!-- Projects Count -->
       <div class="mt-8 text-center text-sm text-gray-500">
-        Mostrando {{ store.activeProjects().length }} proyecto(s) activo(s)
+        {{ 'projects.showingProjects' | translate:{count: store.activeProjects().length} }}
       </div>
     }
   </div>
